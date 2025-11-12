@@ -14,13 +14,13 @@ use std::time::{Duration, SystemTime, UNIX_EPOCH};
 pub const DOOM_TS: u64 = 2_147_483_647;
 
 /// ammount of seconds in a minute
-const SECONDS_IN_MINUTE: u64 = 60;
+pub const SECONDS_IN_MINUTE: u64 = 60;
 /// ammount of seconds in a hour
-const SECONDS_IN_HOUR: u64 = 3600;
+pub const SECONDS_IN_HOUR: u64 = 3600;
 /// ammount of seconds in a day
-const SECONDS_IN_DAY: u64 = 86_400; // 24 * 60 * 60
+pub const SECONDS_IN_DAY: u64 = 86_400; // 24 * 60 * 60
 /// ammount of seconds in a year (why ts scarily small)
-const SECONDS_IN_YEAR: u64 = 31_536_000; // 365 * 24 * 60 * 60
+pub const SECONDS_IN_YEAR: u64 = 31_536_000; // 365 * 24 * 60 * 60
 
 /// Calculates the time left until the Year 2038 problem occurs,
 /// returning it as a `Duration`.
