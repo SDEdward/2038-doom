@@ -13,7 +13,7 @@ cargo add doom-2038
 Then, include it in your `main.rs`:
 
 ```rust
-use doom_2038::{doom, DOOM_TS, time_left};
+use doom_2038::{doom, DOOM_TS, time_left}; // and other functions/constants
 ```
 
 ## Features
