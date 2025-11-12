@@ -20,7 +20,8 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Install Rust toolchain
-        uses: rust-lang/setup-rust@v1
+        uses: actions-rs/toolchain@v1
+
         with:
           rust-version: ${{ matrix.toolchain }}
           components: clippy,rustfmt
