@@ -48,15 +48,6 @@ For example:
 cargo run -- countdown
 ```
 
-### Incorrect Arguments
-
-If you provide an incorrect argument, an error message will be displayed, guiding you on the correct usage:
-
-```
-Incorrect argument: <arg>
-Usage: cargo run -- [c|count|countdown]
-```
-
 ## Example
 
 Here’s a simple example of how to use the library in your `main.rs`:
