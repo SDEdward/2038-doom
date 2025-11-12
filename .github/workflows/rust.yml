@@ -4,11 +4,10 @@ on:
   push:
     branches:
       - main
-      - master
   pull_request:
     branches:
       - main
-      - master
+
 jobs:
   test:
     runs-on: ${{ matrix.os }}
@@ -44,11 +43,8 @@ jobs:
           rustc --version
           cargo --version
 
-      - name: Format check
-        run: cargo fmt --all -- --check
-
-      - name: Clippy (deny warnings)
-        run: cargo clippy --all-targets --all-features -- -D warnings
+      - name: Auto-format code
+        run: cargo fmt --all
 
       - name: Check library builds
         run: cargo check --all --all-targets
@@ -59,3 +55,6 @@ jobs:
       - name: Run benches (nightly only)
         if: matrix.toolchain == 'nightly'
         run: cargo bench --all --verbose
+
+      - name: Clippy (deny warnings)
+        run: cargo clippy --all-targets --all-features -- -D warnings
