@@ -43,18 +43,23 @@ jobs:
           rustc --version
           cargo --version
 
-- name: Auto-format code
-  run: cargo fmt --all
-  working-directory: doom
+      - name: Auto-format code
+        run: cargo fmt --all
+        working-directory: doom
 
-- name: Check library builds
-  run: cargo check --all --all-targets
-  working-directory: doom
+      - name: Check library builds
+        run: cargo check --all --all-targets
+        working-directory: doom
 
-- name: Run tests
-  run: cargo test --all --verbose
-  working-directory: doom
+      - name: Run tests
+        run: cargo test --all --verbose
+        working-directory: doom
 
-- name: Clippy (deny warnings)
-  run: cargo clippy --all-targets --all-features -- -D warnings
-  working-directory: doom
+      - name: Run benches (nightly only)
+        if: matrix.toolchain == 'nightly'
+        run: cargo bench --all --verbose
+        working-directory: doom
+
+      - name: Clippy (deny warnings)
+        run: cargo clippy --all-targets --all-features -- -D warnings
+        working-directory: doom
