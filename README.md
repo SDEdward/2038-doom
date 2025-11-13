@@ -27,20 +27,6 @@ Then, include it in your `main.rs`:
 use doom_2038::{doom, DOOM_TS, time_left}; // and other functions/constants
 ```
 
-## Features
-
-### Simple Documentation
-
-- **`fn doom(bool)`**
-  - If the boolean is `true`, it continuously counts down to the Year 2038 problem.
-  - If `false`, it displays the time left only once in a human-readable format.
-
-- **`fn time_left()`**
-  - Returns the time left until the Year 2038 problem as a `Duration`.
-
-- **`const DOOM_TS`**
-  - Represents the 32-bit signed integer limit (2,147,483,647) as a `u64`. 
-
 ### Usage
 
 #### Running the Application
@@ -87,4 +73,5 @@ fn main() {
 ## Enjoy!
 
 Thank you for using the 2038 Doom Countdown crate! If you have any questions or suggestions, feel free to reach out or contribute to the project.
+Please ⭐ my github!
 
