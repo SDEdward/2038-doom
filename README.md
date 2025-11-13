@@ -1,5 +1,17 @@
 # 2038 Doom Countdown
 
+[![Crate]][crates.io]
+[![Documentation]][docs.rs]
+<!-- [![Dependency Status]][deps.rs] -->
+[![Downloads]][crates.io]
+[![License]][LICENSE-UNLICENSE]
+
+[Crate]: https://crates.io/crates/doom-2038
+[Documentation]: https://docs.rs/doom-2038
+<!-- [Dependency Status]: https://deps.rs/crate/doom-2038 -->
+[Downloads]: https://crates.io/crates/doom-2038
+[License]: https://opensource.org/licenses/Unlicense
+
 A Rust CLI application that counts down to the Year 2038 problem, which is associated with the maximum value for a 32-bit signed integer.
 
 ## Installation
