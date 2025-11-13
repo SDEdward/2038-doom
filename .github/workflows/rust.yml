@@ -61,7 +61,7 @@ jobs:
         working-directory: doom
 
       - name: Run benchmarks (nightly only)
-        if: matrix.toolchain == 'nightly'
+        if: ${{ matrix.toolchain == 'nightly' }}
         run: cargo bench --all --verbose
         working-directory: doom
 
