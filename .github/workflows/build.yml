@@ -5,12 +5,10 @@ on:
     types: [created]
 
 env:
-  # name of the binary produced by cargo (adjust if different)
-  BINARY_NAME: doom
+  BINARY_NAME: doom-2038
 
 jobs:
   build-and-upload:
-    runs-on: ubuntu-latest
     strategy:
       fail-fast: false
       matrix:
@@ -38,18 +36,15 @@ jobs:
       - name: Add target
         if: matrix.target != 'x86_64-unknown-linux-gnu'
         run: rustup target add ${{ matrix.target }}
-        shell: bash
 
-      - name: Install build dependencies (Windows toolchain on ubuntu if needed)
+      - name: Install Windows cross toolchain (Linux only)
         if: matrix.target == 'x86_64-pc-windows-msvc' && runner.os == 'Linux'
         run: |
           sudo apt-get update
           sudo apt-get install -y mingw-w64
-        shell: bash
 
-      - name: Build (release)
+      - name: Build release binary
         run: |
-          # On Windows runner build normally; on Linux target build native or with cross if desired.
           if [[ "${{ matrix.runs-on }}" == "windows-latest" ]]; then
             cargo build --release
           else
@@ -57,35 +52,32 @@ jobs:
           fi
         shell: bash
 
-      - name: Prepare artifact
+      - name: Package binary
         run: |
           mkdir -p out
           if [[ "${{ matrix.runs-on }}" == "windows-latest" ]]; then
             BIN_PATH="target\\release\\${BINARY_NAME}.exe"
-            powershell -Command "Compress-Archive -Path $BIN_PATH -DestinationPath out\\${{ matrix.archive }}" 
+            powershell -Command "Compress-Archive -Path $BIN_PATH -DestinationPath out\\${{ matrix.archive }}"
           else
             BIN_PATH="target/${{ matrix.target }}/release/${BINARY_NAME}"
             tar -C "$(dirname "$BIN_PATH")" -czf out/${{ matrix.archive }} "$(basename "$BIN_PATH")"
           fi
         shell: bash
 
-      - name: Create GitHub release (ensure exists)
+      - name: Create GitHub release
         id: create_release
-        uses: actions/create-release@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        uses: softprops/action-gh-release@v1
         with:
-          tag_name: ${{ github.ref }}
-          release_name: ${{ github.ref }}
+          tag_name: ${{ github.ref_name }}
+          name: ${{ github.ref_name }}
           draft: false
           prerelease: false
-
-      - name: Upload release asset
-        uses: actions/upload-release-asset@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Upload release asset
+        uses: softprops/action-gh-release@v1
         with:
-          upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: out/${{ matrix.archive }}
-          asset_name: ${{ matrix.archive }}
-          asset_content_type: application/octet-stream
+          files: out/${{ matrix.archive }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
