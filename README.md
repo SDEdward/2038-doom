@@ -1,16 +1,15 @@
 # 2038 Doom Countdown
 
-[![Crate]][crates.io]
-[![Documentation]][docs.rs]
-<!-- [![Dependency Status]][deps.rs] -->
-[![Downloads]][crates.io]
-[![License]][LICENSE-UNLICENSE]
+[![Crates.io](https://img.shields.io/crates/v/doom-2038.svg)](https://crates.io/crates/doom-2038)
+[![Docs.rs](https://img.shields.io/badge/docs-latest-blue.svg)](https://docs.rs/doom-2038)
+[![Downloads](https://img.shields.io/crates/d/doom-2038.svg)](https://crates.io/crates/doom-2038)
+[![License: Unlicense](https://img.shields.io/badge/license-Unlicense-lightgrey.svg)](https://opensource.org/licenses/Unlicense)
 
 [Crate]: https://crates.io/crates/doom-2038
 [Documentation]: https://docs.rs/doom-2038
-<!-- [Dependency Status]: https://deps.rs/crate/doom-2038 -->
 [Downloads]: https://crates.io/crates/doom-2038
 [License]: https://opensource.org/licenses/Unlicense
+
 
 A Rust CLI application that counts down to the Year 2038 problem, which is associated with the maximum value for a 32-bit signed integer.
 
