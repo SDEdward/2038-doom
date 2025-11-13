@@ -7,19 +7,21 @@ use std::time::{Duration, SystemTime, UNIX_EPOCH};
 ///
 /// # Examples
 ///
-/// ```no_run
-/// let u32_limit = DOOM_TS;  
+/// ```
+/// use doom_2038::DOOM_TS;
+///
+/// let u32_limit = DOOM_TS;
 /// assert_eq!(u32_limit, 2_147_483_647);
 /// ```
 pub const DOOM_TS: u64 = 2_147_483_647;
 
-/// ammount of seconds in a minute
+/// Amount of seconds in a minute
 pub const SECONDS_IN_MINUTE: u64 = 60;
-/// ammount of seconds in a hour
+/// Amount of seconds in an hour
 pub const SECONDS_IN_HOUR: u64 = 3600;
-/// ammount of seconds in a day
+/// Amount of seconds in a day
 pub const SECONDS_IN_DAY: u64 = 86_400; // 24 * 60 * 60
-/// ammount of seconds in a year (why ts scarily small)
+/// Amount of seconds in a year
 pub const SECONDS_IN_YEAR: u64 = 31_536_000; // 365 * 24 * 60 * 60
 
 /// Calculates the time left until the Year 2038 problem occurs,
@@ -36,7 +38,9 @@ pub const SECONDS_IN_YEAR: u64 = 31_536_000; // 365 * 24 * 60 * 60
 ///
 /// # Examples
 ///
-/// ```no_run
+/// ```
+/// use doom_2038::time_left;
+///
 /// let duration_left = time_left();
 /// println!("Time left until 2038 problem: {:?}", duration_left);
 /// ```
@@ -56,7 +60,10 @@ pub fn time_left() -> Duration {
 ///
 /// # Examples
 ///
-/// ```no_run
+/// ```
+/// use std::time::Duration;
+/// use doom_2038::print_time_left;
+///
 /// let remaining_time = Duration::new(5000, 0); // Example duration
 /// print_time_left(remaining_time);
 /// ```
@@ -121,13 +128,15 @@ pub fn print_time_left(duration: Duration) {
 ///
 /// # Parameters
 ///
-/// - `countdown`: A boolean that determines whether to run the countdown continuously or just once. (true = continously)
+/// - `countdown`: A boolean that determines whether to run the countdown continuously or just once.
 ///
 /// # Examples
 ///
-/// ```no_run
+/// ```
+/// use doom_2038::doom;
+///
 /// // To run the countdown continuously:
-/// doom(true);
+/// // doom(true); // Uncomment to run
 ///
 /// // To print the time left once:
 /// doom(false);
